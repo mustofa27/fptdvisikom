@@ -1,13 +1,12 @@
-%get face
-get_face = detectFaces('input_images/baby.jpg');
-figure(2)
-imshow(get_face);
+%training extrack
+call_training;
 
-%extract features
-face_gray = rgb2gray(get_face);
-features_face = lbp(face_gray, true);
+%testing extrack
+call_testing;
 
-figure(3)
-bar(features_face,'grouped')
-title('Squared Error of LBP Histograms')
-xlabel('LBP Histogram Bins')
+%ELM
+%training untuk membentuk pola neuron, hasil disimpan di elm_model.mat
+elm_train('training_features.txt', 1, 20, 'sig');
+%testing
+elm_predict('testing_features.txt')
+
