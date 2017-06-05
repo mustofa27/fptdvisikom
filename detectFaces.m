@@ -111,29 +111,29 @@ imgg = imread(img2);
 II2 = imcrop(imgg,[min(faceBound(:,1)) min(faceBound(:,2)) max(faceBound(:,3))-min(faceBound(:,1)) max(faceBound(:,4))-min(faceBound(:,2))]);
 face = II2;
 %imshow(II2);
-%disp(faceBound)
+disp(faceBound)
 % Show the detected face(s) with original image
-%figure(1),imshow(img2), hold on;
-%if(~isempty(faceBound));
-%    for n=1:size(faceBound,1)
-%        toleranceX = floor(0.1*(faceBound(n,3)-faceBound(n,1)));
-%        toleranceY = floor(0.1*(faceBound(n,4)-faceBound(n,2)));
-%        % original bounds
-%        x1=faceBound(n,1); y1=faceBound(n,2);
-%        x2=faceBound(n,3); y2=faceBound(n,4);
-%        % adjusted bounds to get wider face capture
-%        x1t=faceBound(n,1)-toleranceX; y1t=faceBound(n,2)-toleranceY;
-%        x2t=faceBound(n,3)+toleranceX; y2t=faceBound(n,4)+toleranceY;
-%        imSize = size(imread(img2));
-%        % if adjusted bounds will lead to out-of-bounds plotting, use original bounds
-%        if x1t < 1 || y1t < 1 || x2t > imSize(2) || y2t > imSize(1)
-%            fprintf('Out of bounds adjustments. Plotting original values...\n');
-%            plot([x1 x1 x2 x2 x1],[y1 y2 y2 y1 y1],'LineWidth',2);
-%        else
-%            plot([x1t x1t x2t x2t x1t],[y1t y2t y2t y1t y1t],'LineWidth',2);
-%        end
-%    end
-%end
+figure,imshow(img2), hold on;
+if(~isempty(faceBound));
+    for n=1:size(faceBound,1)
+        toleranceX = floor(0.1*(faceBound(n,3)-faceBound(n,1)));
+        toleranceY = floor(0.1*(faceBound(n,4)-faceBound(n,2)));
+        % original bounds
+        x1=faceBound(n,1); y1=faceBound(n,2);
+        x2=faceBound(n,3); y2=faceBound(n,4);
+        % adjusted bounds to get wider face capture
+        x1t=faceBound(n,1)-toleranceX; y1t=faceBound(n,2)-toleranceY;
+        x2t=faceBound(n,3)+toleranceX; y2t=faceBound(n,4)+toleranceY;
+        imSize = size(imread(img2));
+        % if adjusted bounds will lead to out-of-bounds plotting, use original bounds
+        if x1t < 1 || y1t < 1 || x2t > imSize(2) || y2t > imSize(1)
+            fprintf('Out of bounds adjustments. Plotting original values...\n');
+           plot([x1 x1 x2 x2 x1],[y1 y2 y2 y1 y1],'LineWidth',2);
+        else
+            plot([x1t x1t x2t x2t x1t],[y1t y2t y2t y1t y1t],'LineWidth',2);
+        end
+    end
+end
 
 %title('Detected face in image');
 %hold off;

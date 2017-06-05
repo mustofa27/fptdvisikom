@@ -1,7 +1,8 @@
 %training_smile
-for i=1:5
+for i=1:20
     img_dir = sprintf('training_images/smile/train_smile%d.pgm',i);
     img = imread(img_dir);
+    %figure(i+20), imshow(img);
     features_face = lbp(img, true);
     for j=1:11
         if j==1
@@ -13,9 +14,10 @@ for i=1:5
 end
 
 %training_non_smile
-for i=1:5
+for i=1:20
     img_dir = sprintf('training_images/non_smile/train_non_smile%d.pgm',i);
     img = imread(img_dir);
+    %figure(i+30), imshow(img);
     features_face = lbp(img, true);
     for j=1:11
         if j==1
