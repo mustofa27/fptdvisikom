@@ -1,4 +1,4 @@
-%wkwkwk LBP
+%fungsi lbp rotatation
 function y = lbp(I,isRotationInvariant)
 if isRotationInvariant == true
     y = extractLBPFeatures(I,'Upright',false);
